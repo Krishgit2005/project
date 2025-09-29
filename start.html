@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PolyDash — Start</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Orbitron:700" as="style" onload="this.rel='stylesheet'">
+    <style>
+        :root {
+            --bg1: #0a0f2c; /* deep navy */
+            --bg2: #06123d; /* indigo */
+            --grid: rgba(40, 80, 200, 0.18);
+            --text: #e9eeff;
+            --accent-1: #46d3ff; /* cyan */
+            --accent-2: #3fff73; /* green */
+            --accent-3: #ff6a00; /* orange */
+        }
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
+        body {
+            font-family: Orbitron, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text);
+            background: radial-gradient(1200px 800px at 70% 15%, #1a2a6c 0%, #1a1e3c 35%, var(--bg1) 70%, #020412 100%);
+            display: grid; place-items: center;
+            overflow: hidden;
+        }
+        /* Futuristic grid background */
+        .bg-grid {
+            position: fixed; inset: 0; pointer-events: none; opacity: 0.65;
+            background-image:
+                linear-gradient(var(--grid) 2px, transparent 2px),
+                linear-gradient(90deg, var(--grid) 2px, transparent 2px);
+            background-size: 140px 140px, 140px 140px;
+            animation: pan 30s linear infinite;
+        }
+        @keyframes pan {
+            from { background-position: 0 0, 0 0; }
+            to   { background-position: 1400px 0, 0 1400px; }
+        }
+        .card {
+            width: min(680px, 92vw);
+            padding: 28px 30px 34px;
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.45),
+                inset 0 0 80px rgba(70, 120, 255, 0.15),
+                inset 0 0 10px rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+            position: relative;
+        }
+        .title {
+            margin: 0 0 8px; font-size: clamp(32px, 6vw, 56px);
+            letter-spacing: 1px; text-shadow: 0 0 18px rgba(100,160,255,0.55);
+        }
+        .subtitle { margin: 0 0 22px; opacity: .85; font-size: clamp(14px, 2.5vw, 18px); }
+        .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            min-width: 170px; padding: 14px 20px; border-radius: 12px;
+            text-decoration: none; color: #001; font-weight: 800; font-size: 18px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            box-shadow: 0 10px 28px rgba(70,211,255,.35), inset 0 -2px 0 rgba(0,0,0,.15);
+            transition: transform .08s ease, box-shadow .12s ease;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(70,211,255,.45); }
+        .btn:active { transform: translateY(0); }
+        .btn-secondary {
+            color: var(--text); background: linear-gradient(90deg, #243b55, #141e30);
+            box-shadow: 0 10px 28px rgba(0,0,0,.35), inset 0 -2px 0 rgba(255,255,255,.05);
+        }
+        .keys { margin-top: 14px; font-size: 13px; opacity: .75; }
+        .footer { margin-top: 16px; opacity: .55; font-size: 12px; }
+        .badge { padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.08); margin-left: 8px; }
+    </style>
+    <script>
+        function startGame(){ window.location.href = 'index.html'; }
+        window.addEventListener('keydown', function(e){
+            const c = e.code;
+            if (c === 'Enter' || c === 'Space' || c === 'Digit1' || c === 'Numpad1') {
+                e.preventDefault();
+                startGame();
+            }
+        });
+    </script>
+    <link rel="icon" href="data:,">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0a0f2c">
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <main class="card" role="main">
+        <h1 class="title">PolyDash <span class="badge">Arcade</span></h1>
+        <p class="subtitle">Fast-paced neon platforming. Avoid spikes, time your jumps, chase a new best score.</p>
+        <div class="actions">
+            <a class="btn" href="index.html" onclick="startGame(); return false;">Start Game</a>
+            <a class="btn btn-secondary" href="README.md" target="_blank" rel="noopener">How to Play</a>
+        </div>
+        <div class="keys">Shortcuts: 1 • Enter • Space</div>
+        <div class="footer">Made for fun. Best experienced fullscreen.</div>
+    </main>
+</body>
+</html>
+
+
